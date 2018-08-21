@@ -9,9 +9,6 @@ build_images:
    script:
     - echo $img
     - if [ "`docker images | awk '/^registry.docker.quancheng-ec.com:5000/ { print $3 }'`" ]; then docker rmi -f $(docker images | awk '/^registry.docker.quancheng-ec.com:5000/ { print $3 }' ); fi
-    - mvn clean install -U
-    - mvn deploy -N
-    - cd interface; mvn deploy; cd ..
     - echo "Build Docker Image..."
     - docker build --no-cache -t $img .
     - echo "Push Image:" $img " to repository..."
