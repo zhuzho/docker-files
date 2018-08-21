@@ -34,15 +34,12 @@
 * 查看表结构
 
 ```
-In [3]: from odps.inter import enter
+from odps.inter import enter
+room = enter()
+o = room.odps
+o.get_table('qc_user_action_log')
 
-In [4]: room = enter()
-
-In [5]: o = room.odps
-
-In [6]: o.get_table('qc_user_action_log')
-
-Out[6]: 
+# 结果示例显示
 odps.Table
   name: default_123412.`qc_user_action_log`
   schema:",
@@ -73,16 +70,17 @@ odps.Table
 
 ```
 
- in[1]:from odps.inter import enter
- in[2]:room = enter()
- in[3]:o=room.odps 
+from odps.inter import enter
+room = enter()
+o=room.odps 
 ```
 
 * 查看表结构
 
 ```
- in[4]: t=o.get_table('qc_user_action_log')
- out[4]:odps.Table
+t=o.get_table('qc_user_action_log')
+# 结果示例显示
+odps.Table
   name: dpdefault_123412.`qc_user_action_log`
   schema:
     id                    : string      # uuid
@@ -111,9 +109,9 @@ odps.Table
 * 数据获取
 
 ```
-int[5]:t = o.get_table('qc_user_action_log')
-int[6]:for r in t.head(5):
-int[7]:    print r.values
+t = o.get_table('qc_user_action_log')
+for r in t.head(5):
+    print r.values
 
 with t.open_reader(partition='pt=test') as reader:
   count = reader.count
@@ -122,7 +120,7 @@ with t.open_reader(partition='pt=test') as reader:
     print(record.values)
     print(record['extra_info'])
 
->>> # 不使用with表达式
+# 不使用with表达式
 reader = t.open_reader(partition='pt=test')
 count = reader.count
 for record in reader[5:10]
@@ -144,9 +142,9 @@ with o.execute_sql('select * from qc_user_action_log limit 5').open_reader() as 
 
 ```
 
-in[19]:%load_ext odps
-in[20]:%enter
-in[21]:%sql select * from qc_user_action_log where ds='20180820' limit 5
+%load_ext odps
+%enter
+%sql select * from qc_user_action_log where ds='20180820' limit 5
 
 ```
 
