@@ -25,7 +25,8 @@
  sudo pip install numpy --ignore-installed numpy
  
 ## 使用
-
+* 密码
+  12345
 * 阿里文档
  https://help.aliyun.com/document\_detail/34615.html?spm=a2c4g.11186631.6.692.FoZVDT
  https://help.aliyun.com/document_detail/34615.html?spm=a2c4g.11186623.6.694.4eAs1k
@@ -155,6 +156,26 @@ with o.execute_sql('select * from qc_user_action_log limit 5').open_reader() as 
   data = DataFrame(o.get_table('qc_user_action_log'))
   data.head(10)
   
+```
+
+## export the sql result into a local excel file
+
+```
+import xlwt
+
+book = xlwt.Workbook(encoding="utf-8")
+sheet = book.add_sheet("from odps")
+
+with t.open_reader() as reader:
+    y = 0
+    for r in reader.read():
+        x = 0
+        for v in r.values:
+            sheet.write(y, x, v)
+            x = x + 1
+        y = y + 1
+book.save("from_odps.xls")
+
 ```
 
 ## 数据分析
