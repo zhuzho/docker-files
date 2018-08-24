@@ -1,4 +1,4 @@
-## 安装python2.6 以上
+## 安装python3.7
 
 ## 安装ODPS的pip && Python依赖
 
@@ -183,3 +183,15 @@ book.save("from_odps.xls")
 ### dataFrame
   https://pyodps.readthedocs.io/zh_CN/latest/df.html
 
+
+## issue
+
+### matplotlib中文乱码  针对Docker linux和windows类似
+
+#### 下载字体文件 
+* http://font.chinaz.com/130130474870.htm
+* 解压重命名*.ttf文件为Vear.ttf
+* 配置matplotlibrc修改两项，位于/usr/local/lib/python3.7/site-packages/matplotlib/mpl-data/
+* font.family         : WenQuanYi Zen Hei Mono
+* font.sans-serif     :Vera ## Vera对应重命名的文件
+* build镜像时覆盖image的/usr/local/lib/python3.7/site-packages/matplotlib/mpl-data/matplotlibrc文件，如果是2.7需要修改目录
