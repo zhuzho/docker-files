@@ -14,4 +14,4 @@ build_images:
     - echo "Push Image:" $img " to repository..."
     - docker push $img
    only:
-    - master
+    - python3
