@@ -187,7 +187,7 @@ book.save("from_odps.xls")
 ## issue
 
 ### matplotlib中文乱码  针对Docker linux和windows类似
-
+* https://edu.aliyun.com/a/2954
 #### 下载字体文件 
 * http://font.chinaz.com/130130474870.htm
 * 解压重命名*.ttf文件为Vear.ttf
