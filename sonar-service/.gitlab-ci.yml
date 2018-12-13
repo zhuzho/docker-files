@@ -1,0 +1,17 @@
+stages:
+  - docker-build
+before_script:
+  - dockerservice=registry.docker.quancheng-ec.com:5000/sonar-service:`TZ=CST-8 date '+%Y%m%d-%H%M'`
+  - hostname -i
+  - whoami
+build_images:
+   stage: docker-build
+   script:
+    - echo $image
+    - if [ "`docker images | awk '/^registry.docker.quancheng-ec.com:5000/ { print $3 }'`" ]; then docker rmi -f $(docker images | awk '/^registry.docker.quancheng-ec.com:5000/ { print $3 }' ); fi
+    - echo "Build Docker Image..."
+    - docker build -t $dockerservice .
+    - echo "Push Image:" $dockerservice " to repository..."
+    - docker push $dockerservice
+   only:
+    - master
