@@ -10,7 +10,7 @@ FROM python:3
 #ADD config.ipynb /root
 
 RUN pip install 'pyodps[full]'
-ADD config.py /root
+ADD init.py /root
 ADD matplotlibrc /usr/local/lib/python3.7/site-packages/matplotlib/mpl-data/matplotlibrc
 ADD Vera.ttf /usr/local/lib/python3.7/site-packages/matplotlib/mpl-data/fonts/ttf/Vera.ttf
 EXPOSE 8888
